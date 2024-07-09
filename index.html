@@ -1,0 +1,162 @@
+<html>
+
+<body id="root">
+</body>
+<script src="https://unpkg.com/react@18/umd/react.production.min.js">
+</script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js">
+</script>
+
+<!-- JSX 문법을 적용하기 위해 넣어줘야하는 script -->
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<!-- <script> -->
+<script type="text/babel">
+    const root = document.querySelector('#root');
+
+    // PDF 2.12 : null 부분에 JSON 넣어서 코드 작성
+    // const h1 = React.createElement('h1', {
+    //     onClick: (e) => {
+    //         const target = e.target;
+    //         const value = target.innerText;
+    //         alert(value);
+    //     }
+    // }, 'WEB');
+
+    // // PDF 2.15
+    // const Header =
+    //     <header>
+    //         <h1 onClick={(e) => {
+    //             alert(e.target.innerText);
+    //         }}>
+    //             WEB
+    //         </h1>
+    //         World Wide Web!
+    //     </header>;
+
+    // PDF 2.18 : 컴포넌트로 만들기
+    // // 기본 골격
+    // const 변수(첫글자 대문자) = () => { : 표현식 (이 방법을 더 권장함)
+    //     return JSX;
+    // };
+    // function 변수() { : 선언식
+    //     return JSX
+    // }
+    // 면접 볼 때 표현식, 선언식의 차이점을 물어볼수도 있음
+    // const Header = () => {
+    //     return <header>
+    //         <h1 onClick={(e) => {
+    //             alert(e.target.innerText);
+    //         }}>
+    //             WEB
+    //         </h1>
+    //         World Wide Web!
+    //     </header>;
+    // };
+
+    // // JSX를 사용해서 nav 수정해보기 (PDF 2.16)
+    // const Nav =
+    //     <nav>
+    //         <ul>
+    //             <li><a href="1.html">HTML</a></li>
+    //             <li><a href="2.html">CSS</a></li>
+    //             <li><a href="3.html">JavaScript</a></li>
+    //         </ul>
+    //     </nav>;
+
+    // PDF 2.19 : 컴포넌트로 만들기
+    const Nav = () => {
+        return (
+            <nav>
+                <ul>
+                    <li><a href="1.html">HTML</a></li>
+                    <li><a href="2.html">CSS</a></li>
+                    <li><a href="3.html">JavaScript</a></li>
+                </ul>
+            </nav>);
+    };
+
+    // PDF 2.20
+    const Container = () => {
+        return (
+            <div>
+                <Header />
+                <Nav />
+            </div>
+        );
+    };
+
+    // 2024-07-09 09:31
+    const SubHeader = () => {
+        return (
+            <p>세부내용</p>
+        );
+    };
+    // const Header = () => {
+    //     return (
+    //         <h1>Hello</h1>
+    //         <SubHeader />
+    //     );
+    // };
+    // // return에는 하나의 JSX만 쓸 수 있기 때문에 오류 발생 ===> 하나의 그룹이라는것을 설정해줘야함
+    const Header = () => {
+        return (
+            <div>
+                <h1 onClick={() => {
+                    alert(111);
+                }}>
+                    Hello
+                </h1>
+                <h1 onClick={(e) => {
+                    alert(e.target.innerText);
+                    document.body.style.backgroundColor = "yellow";
+                    console.log(SubHeader); // 컴포넌트 구조 보고 싶을때 (PDF 2.22)
+                }}>
+                    Hello
+                </h1>
+                <SubHeader />
+            </div>
+        );
+    };
+
+    // ReactDOM.render(<Container />, root)
+    // // render 안에 쓰여져있는 컴포넌트가 시작점이라고 보면됨
+
+    // PDF 2.24
+    // function Tick() {
+    //     console.log('run');
+    //     const element = (
+    //         <div>
+    //             <h1>안녕, 리액트!</h1>
+    //             <h2>현재 시각: {new Date().toLocaleTimeString()}</h2>
+    //         </div>
+    //     );
+    //     return element;
+    // }
+    // ReactDOM.render(<Tick />, root);
+    // setInterval(Tick, 1000);
+    // // console에는 함수가 반복되는것을 확인할수있지만 브라우저에는 보여지지 않고 있음
+    // // Tick 함수는 반복 실행되는데 render는 반복되지 않고 있기 때문
+
+    // PDF 2.25 : 변경되는 부분만 새로고침
+    // // render도 반복시키기
+    // setInterval(() => {
+    //     ReactDOM.render(<Tick />, root);
+    // }, 1000);
+
+    // PDF 2.26 : 전체 새로고침
+    function Tick() {
+        const element = (
+            `<div>
+                <h1>안녕, 리액트!</h1>
+                <h2>현재 시각: ${new Date().toLocaleTimeString()}</h2>
+            </div>`
+        );
+        return element;
+    }
+    setInterval(() => {
+        root.innerHTML = Tick();
+    }, 1000);
+</script>
+
+</html>

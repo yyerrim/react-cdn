@@ -1,0 +1,48 @@
+<!-- PDF 2.21 -->
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>연습</title>
+</head>
+
+<body id="root">
+</body>
+
+<script src="https://unpkg.com/react@18/umd/react.production.min.js">
+</script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js">
+</script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<script type="text/babel">
+    const root = document.querySelector('#root');
+
+    const Header = () => {
+        return (
+            <header>
+                <h1>
+                    이 책의 이름은 처음 만난 리액트입니다.
+                </h1>
+            </header>);
+    };
+    const Section = () => {
+        return (
+            <h2>
+                이 책은 총 500페이지로 이뤄져 있습니다.
+            </h2>);
+    };
+    const Container = () => {
+        return (
+            <div>
+                <Header />
+                <Section />
+            </div>
+        );
+    };
+
+    ReactDOM.render(<Container />, root)
+</script>
+
+</html>
